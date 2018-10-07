@@ -1,11 +1,4 @@
 //api key = E0OTDN4N1uPMKpsABbJjCmU2FFuOdJ2r
-var buttonArray = [
-  "seinfeld",
-  "curb your enthusiasm",
-  "westworld",
-  "game of thrones",
-  "silicon valley"
-];
 
 function buildQueryURL() {
   // queryURL is the url we'll use to query the API
@@ -22,19 +15,24 @@ function buildQueryURL() {
     .trim();
 }
 
+var buttonArray = [
+  "Seinfeld",
+  "Curb your enthusiasm",
+  "Westworld",
+  "Game of thrones",
+  "Silicon valley"
+];
+// console.log(buttonArray[2]);
+
 function buttonList() {
   var parentDiv = $("<div>");
-  //   var pShowText = $("<p>");
-  // console.log(currentQuestion);
-  //   parentDiv.append(pShowText);
-  //dynamically display question options
-  for (let i = 0; i < currentQuestion.answers.length; i++) {
+  for (let i = 0; i < buttonArray.length; i++) {
+    console.log(buttonArray);
     var showButton = $("<button>");
-    // pShowText.text(buttonArray[i]);
     showButton.addClass("btn btn-info clicked");
     showButton.text(buttonArray[i]);
-    //   optionButton.attr("value", i);
     parentDiv.append(showButton);
   }
-  $(".button-div").append(parentDiv);
+  $(".button-div").prepend(parentDiv);
 }
+buttonList();
