@@ -1,20 +1,3 @@
-//api key = E0OTDN4N1uPMKpsABbJjCmU2FFuOdJ2r
-
-function buildQueryURL() {
-  // queryURL is the url we'll use to query the API
-  var queryURL =
-    "https://api.giphy.com/v1/gifs/search?api_key=E0OTDN4N1uPMKpsABbJjCmU2FFuOdJ2r&q=panda&limit=10&offset=0&rating=PG&lang=en";
-
-  // Begin building an object to contain our API call's query parameters
-  // Set the API key
-  //   var queryParams = { "api-key": "E0OTDN4N1uPMKpsABbJjCmU2FFuOdJ2r" };
-
-  // Grab text the user typed into the search input, add to the queryParams object
-  queryParams.q = $("#search-term")
-    .val()
-    .trim();
-}
-
 var buttonArray = [
   "Seinfeld",
   "Curb your enthusiasm",
@@ -31,8 +14,35 @@ function buttonList() {
     var showButton = $("<button>");
     showButton.addClass("btn btn-info clicked");
     showButton.text(buttonArray[i]);
+    showButton.attr("value", i);
     parentDiv.append(showButton);
   }
   $(".button-div").prepend(parentDiv);
 }
 buttonList();
+
+$(".clicked").click(function() {
+  var clickValue = showButton.val();
+  console.log(clickValue);
+});
+// function buildQueryUrl() {
+var userSearch = "seinfeld";
+// .val()
+// .trim();
+var queryURL =
+  "https://api.giphy.com/v1/gifs/search?api_key=E0OTDN4N1uPMKpsABbJjCmU2FFuOdJ2r&q=" +
+  userSearch +
+  "&limit=10&ofkfset=0&rating=PG&lang=en";
+console.log(queryURL);
+//   return buildQueryUrl;
+// Grab text the user typed into the search input, add to the queryParams object
+//   queryParams.q = $("#search-term")
+//     .val()
+//     .trim();
+//   buildQueryURL();
+$.ajax({
+  url: queryURL,
+  method: "GET"
+}).then(function(response) {
+  console.log("from api call", response);
+});
