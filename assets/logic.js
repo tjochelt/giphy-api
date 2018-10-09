@@ -5,8 +5,16 @@ var buttonArray = [
   "Game of thrones",
   "Silicon valley"
 ];
-// console.log(buttonArray[2]);
 
+//on click:
+//create new variable based on user entry
+//push to buttonArry
+var newButton = $(".form-group").val();
+console.log(newButton);
+$("#add-show").click(buttonArray[""].push());
+
+// console.log(buttonArray[2]);
+//create list of buttons based on buttonArray
 function buttonList() {
   var parentDiv = $("<div>");
   for (let i = 0; i < buttonArray.length; i++) {
@@ -21,12 +29,14 @@ function buttonList() {
 }
 buttonList();
 
+//on click take value of button and create new variable
 $(".clicked").click(function() {
   var clickValue = showButton.val();
   console.log(clickValue);
 });
-// function buildQueryUrl() {
-var userSearch = "seinfeld";
+
+// create query string. Use clickValue variable as "q" value for api call
+var userSearch = clickValue;
 // .val()
 // .trim();
 var queryURL =
