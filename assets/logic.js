@@ -35,16 +35,15 @@ $("#add-show").click(function() {
   console.log(buttonArray);
   // $(".form-control").reset(); //not correct
   //buttonArray[""].push());
-  console.log(buttonArray);
+  // console.log(buttonArray);
   // console.log(showButton);
 });
 //on click take value of button and create new variable
 $(".clicked").click(function() {
   // console.log(showButton);
-  var clickValue = $(".clicked").value;
-  click();
+  var clickValue = $(".clicked").val();
   // buttonArray[$(".clicked").value];
-  console.log(clickValue);
+  console.log(clickValue); //--> returns 0?
 });
 
 // create query string. Use clickValue variable as "q" value for api call
