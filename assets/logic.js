@@ -5,15 +5,6 @@ var buttonArray = [
   "Game of thrones",
   "Silicon valley"
 ];
-
-//on click:
-//create new variable based on user entry
-//push to buttonArry
-var newButton = $(".form-group").val();
-console.log(newButton);
-$("#add-show").click(buttonArray[""].push());
-
-// console.log(buttonArray[2]);
 //create list of buttons based on buttonArray
 function buttonList() {
   var parentDiv = $("<div>");
@@ -24,14 +15,35 @@ function buttonList() {
     showButton.text(buttonArray[i]);
     showButton.attr("value", i);
     parentDiv.append(showButton);
+    // console.log(buttonArray[showButton.value]);
   }
   $(".button-div").prepend(parentDiv);
+  // console.log(showButton);
 }
 buttonList();
 
+//on click:
+//create new variable based on user entry
+//push to buttonArry
+// var newButton = $(".form-group").val();
+// console.log(newButton);
+$("#add-show").click(function() {
+  var userEntry = $(".form-control").val();
+  buttonArray.push(userEntry);
+  buttonList();
+  console.log(userEntry);
+  console.log(buttonArray);
+  // $(".form-control").reset(); //not correct
+  //buttonArray[""].push());
+  console.log(buttonArray);
+  // console.log(showButton);
+});
 //on click take value of button and create new variable
 $(".clicked").click(function() {
-  var clickValue = showButton.val();
+  // console.log(showButton);
+  var clickValue = $(".clicked").value;
+  click();
+  // buttonArray[$(".clicked").value];
   console.log(clickValue);
 });
 
