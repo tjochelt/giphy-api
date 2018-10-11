@@ -13,8 +13,9 @@ function buttonList() {
     var showButton = $("<button>");
     showButton.addClass("btn btn-info clicked");
     showButton.text(buttonArray[i]);
-    showButton.attr("value", i);
+    showButton.attr("value", buttonArray[i]);
     parentDiv.append(showButton);
+    console.log(showButton);
     // console.log(buttonArray[showButton.value]);
   }
   $(".button-div").prepend(parentDiv);
@@ -38,12 +39,15 @@ $("#add-show").click(function() {
   // console.log(buttonArray);
   // console.log(showButton);
 });
+// console.log(buttonArray[1]);
 //on click take value of button and create new variable
 $(".clicked").click(function() {
   // console.log(showButton);
-  var clickValue = $(".clicked").val();
+  console.log($(".clicked");
+  var clickValue = buttonArray[$(".btn btn-info clicked").innerHTML];
+  // .text(); //val();
   // buttonArray[$(".clicked").value];
-  console.log(clickValue); //--> returns 0?
+  console.log(clickValue); //--> returns seinfeld (index of 0)
 });
 
 // create query string. Use clickValue variable as "q" value for api call
@@ -67,3 +71,5 @@ $.ajax({
 }).then(function(response) {
   console.log("from api call", response);
 });
+//grabbing gif url and posting to gifs div
+$("#gifs").append(response.data[0].source_post_url);
