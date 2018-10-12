@@ -42,34 +42,32 @@ $("#add-show").click(function() {
 // console.log(buttonArray[1]);
 //on click take value of button and create new variable
 $(".clicked").click(function() {
-  // console.log(showButton);
-  console.log($(".clicked");
-  var clickValue = buttonArray[$(".btn btn-info clicked").innerHTML];
-  // .text(); //val();
-  // buttonArray[$(".clicked").value];
+  var clickValue = this.value;
   console.log(clickValue); //--> returns seinfeld (index of 0)
-});
 
-// create query string. Use clickValue variable as "q" value for api call
-var userSearch = clickValue;
-// .val()
-// .trim();
-var queryURL =
-  "https://api.giphy.com/v1/gifs/search?api_key=E0OTDN4N1uPMKpsABbJjCmU2FFuOdJ2r&q=" +
-  userSearch +
-  "&limit=10&ofkfset=0&rating=PG&lang=en";
-console.log(queryURL);
-//   return buildQueryUrl;
-// Grab text the user typed into the search input, add to the queryParams object
-//   queryParams.q = $("#search-term")
-//     .val()
-//     .trim();
-//   buildQueryURL();
-$.ajax({
-  url: queryURL,
-  method: "GET"
-}).then(function(response) {
-  console.log("from api call", response);
+  // create query string. Use clickValue variable as "q" value for api call
+  userInput = clickValue.split(" ").join("+");
+  console.log(userInput);
+
+  // .val()
+  // .trim();
+  var queryURL =
+    "https://api.giphy.com/v1/gifs/search?api_key=E0OTDN4N1uPMKpsABbJjCmU2FFuOdJ2r&q=" +
+    userInput +
+    "&limit=10&ofkfset=0&rating=PG&lang=en";
+  console.log(queryURL);
+  //   return buildQueryUrl;
+  // Grab text the user typed into the search input, add to the queryParams object
+  //   queryParams.q = $("#search-term")
+  //     .val()
+  //     .trim();
+  //   buildQueryURL();
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    console.log("from api call", response);
+  });
+  //grabbing gif url and posting to gifs div
+  // $("#gifs").append(response.data[0].source_post_url);
 });
-//grabbing gif url and posting to gifs div
-$("#gifs").append(response.data[0].source_post_url);
