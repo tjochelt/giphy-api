@@ -29,6 +29,7 @@ buttonList();
 // var newButton = $(".form-group").val();
 // console.log(newButton);
 $("#add-show").click(function() {
+  // $("#add-show").value = ""; need to add something to reset form on submit
   var userEntry = $(".form-control").val();
   buttonArray.push(userEntry);
   buttonList();
@@ -41,7 +42,7 @@ $("#add-show").click(function() {
 });
 // console.log(buttonArray[1]);
 //on click take value of button and create new variable
-$(".clicked").click(function() {
+$(document).on("click", ".clicked", function() {
   var clickValue = this.value;
   console.log(clickValue); //--> returns seinfeld (index of 0)
 
@@ -67,6 +68,23 @@ $(".clicked").click(function() {
     method: "GET"
   }).then(function(response) {
     console.log("from api call", response);
+    $("#gifs").empty();
+
+    var results = response.data;
+    for (var i = 0; i < results.length; i++) {
+      // Creating and storing a div tag
+      var showDiv = $("<div>");
+
+      var p = $("<p>").text("Rating: " + results[i].rating);
+
+      var showImage = $("<img>");
+      showImage.attr("src", results[i].images.fixed_height.url);
+
+      showDiv.append(p);
+      showDiv.append(showImage);
+
+      $("#gifs").prepend(showDiv);
+    }
   });
   //grabbing gif url and posting to gifs div
   // $("#gifs").append(response.data[0].source_post_url);
